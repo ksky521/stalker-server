@@ -1,0 +1,161 @@
+{
+    "ipdata": "./ip.dat",
+    "staticPath": "./public",
+    "port": 8800,
+    "serverOptions": {},
+    "error_log": "./error.log",
+    "logs": {
+        "t.gif": {
+            "access_log": "./access.log"
+        },
+        "f.gif": {
+            "access_log": "./access.log",
+            "fields": ["id", "product_id", "ip", "access_time", "user_agent", "os_name", "os_version", "os_fullversion", "browser_name", "browser_version", "browser_fullversion", "device_name", "device_version", "device_fullversion", "screen", "device_pixel_ratio", "isp", "province", "city", "county", "ftr_000", "ftr_001", "ftr_002", "ftr_003", "ftr_004", "ftr_005", "ftr_006", "ftr_007", "ftr_008", "ftr_009", "ftr_010", "ftr_011", "ftr_012", "ftr_013", "ftr_014", "ftr_015", "ftr_016", "ftr_017", "ftr_018", "ftr_019", "ftr_020", "ftr_021", "ftr_022", "ftr_023", "ftr_024", "ftr_025", "ftr_026", "ftr_027", "ftr_028", "ftr_029", "ftr_030", "ftr_031", "ftr_032", "ftr_033", "ftr_034", "ftr_035", "ftr_036", "ftr_037", "ftr_038", "ftr_039", "ftr_040", "ftr_041", "ftr_042", "ftr_043", "ftr_044", "ftr_045", "ftr_046", "ftr_047", "ftr_048", "ftr_049"],
+            "hash_map": {
+                "id": {
+                    "field": "product_id",
+                    "name": "product_id"
+                },
+                "ds": {
+                    "field": "screen",
+                    "name": "display"
+                },
+                "dpr": {
+                    "field": "device_pixel_ratio",
+                    "name": "device_pixel_ratio"
+                },
+                "bdrs": {
+                    "field": "ftr_000",
+                    "name": "border-radius"
+                },
+                "bxsd": {
+                    "field": "ftr_001",
+                    "name": "box-shadow"
+                },
+                "txsd": {
+                    "field": "ftr_002",
+                    "name": "text-shadow"
+                },
+                "anim": {
+                    "field": "ftr_003",
+                    "name": "animation-name"
+                },
+                "trsi": {
+                    "field": "ftr_004",
+                    "name": "transition"
+                },
+                "trfm": {
+                    "field": "ftr_005",
+                    "name": "transform"
+                },
+                "cavs": {
+                    "field": "ftr_006",
+                    "name": "canvas"
+                },
+                "ls": {
+                    "field": "ftr_007",
+                    "name": "localStorage"
+                },
+                "ss": {
+                    "field": "ftr_008",
+                    "name": "SessionStorage"
+                },
+                "natm": {
+                    "field": "ftr_009",
+                    "name": "navigationtiming"
+                },
+                "ustm": {
+                    "field": "ftr_010",
+                    "name": "usertiming"
+                },
+                "arra": {
+                    "field": "ftr_011",
+                    "name": "ES5Array"
+                },
+                "xhr2": {
+                    "field": "ftr_012",
+                    "name": "XMLHttpRequest2"
+                },
+                "rqaf": {
+                    "field": "ftr_013",
+                    "name": "RequestAnimationFrame"
+                },
+                "cookie": {
+                    "field": "ftr_014",
+                    "name": "cookie"
+                },
+                "geo": {
+                    "field": "ftr_015",
+                    "name": "geolocation"
+                },
+                "svg": {
+                    "field": "ftr_016",
+                    "name": "svg"
+                },
+                "work": {
+                    "field": "ftr_017",
+                    "name": "web-worker"
+                },
+                "wbsk": {
+                    "field": "ftr_018",
+                    "name": "WebSocket"
+                },
+                "vido": {
+                    "field": "ftr_019",
+                    "name": "Video"
+                },
+                "audo": {
+                    "field": "ftr_020",
+                    "name": "Audio"
+                },
+                "hsty": {
+                    "field": "ftr_021",
+                    "name": "History"
+                },
+                "file": {
+                    "field": "ftr_022",
+                    "name": "File"
+                },
+                "psmg": {
+                    "field": "ftr_023",
+                    "name": "PostMessage"
+                },
+                "WebP-lossy": {
+                    "field": "ftr_024",
+                    "name": "WebP-lossy"
+                },
+                "WebP-lossless": {
+                    "field": "ftr_025",
+                    "name": "WebP-lossless"
+                },
+                "WebP-alpha": {
+                    "field": "ftr_026",
+                    "name": "WebP-alpha"
+                },
+                "WebP-animation": {
+                    "field": "ftr_027",
+                    "name ": "WebP-animation"
+                }
+            }
+        },
+        "hijack.gif": {
+            "access_log": "./access.log",
+            "handler": "./lib/hijack.js",
+            "fields": ["id", "product_id", "ip", "access_time", "user_agent", "os_name", "os_version", "os_fullversion", "browser_name", "browser_version", "browser_fullversion", "device_name", "device_version", "device_fullversion", "type", "content", "isp", "province", "city", "county", "host1", "host2"],
+            "hash_map": {
+                "id": {
+                    "field": "product_id",
+                    "name": "product_id"
+                },
+                "type": {
+                    "field": "type",
+                    "name": "type"
+                },
+                "files": {
+                    "field": "content",
+                    "name": "content"
+                }
+            }
+        }
+    }
+}

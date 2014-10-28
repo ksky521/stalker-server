@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+var versions = require('../package').version;
+var Commander = require('commander');
+
+
+Commander.version(versions);
+
+Commander.command('start')
+    .usage('[filename] [options]')
+    .description('start server')
+    .action(function(filename, options) {
+        if (typeof filename !== 'string') {
+            filename = '../config.json'
+        }
+        var config = require(filename || '../config.json');
+        var Server = require('../lib/server');
+
+        var server = new Server(config);
+
+    }).on('--help', function() {
+        console.log('  Examples:');
+        console.log();
+        console.log('  stalker-server start config/file/path');
+        console.log();
+    });
+Commander.parse(process.argv);
+
+
+if (!Commander.args[0]) {
+    process.stdout.write(Commander.helpInformation());
+    Commander.emit('--help');
+}
