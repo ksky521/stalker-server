@@ -1,6 +1,6 @@
 {
   "name": "stalker-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A static server",
   "author": {
     "name": "Theo Wang",
@@ -11,6 +11,10 @@
   },
   "engines": {
     "node": ">= 0.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ksky521/stalker-server"
   },
   "dependencies": {
     "commander": "^2.2.0",
@@ -25,10 +29,8 @@
   },
   "keywords": [
     "stalker",
-    "nginx",
-    "log",
-    "parser",
-    "nginx log"
+    "server",
+    "static"
   ],
   "readmeFilename": "README.md"
 }
