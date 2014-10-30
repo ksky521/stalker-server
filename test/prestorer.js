@@ -1,20 +1,24 @@
 var URL = require('url');
 var fs = require('fs');
-var overview = {};
+var overviewMap = {};
 var curDateTime;
 var curHour = new Date().getHours();
 var stream;
-module.exports = function(data, options) {
+//用于统计overview信息
+exports.task = function(data, options) {
+
+    options = options || {};
     var query = data.query;
-    var fields = data.data;
-    if (query.type == 0 && query.id) {
-        var pid = query.id;
+    var overview = overviewMap[query.type] = overviewMap[query.type] || {};
+    var pid = query.id;
+
+    if (pid) {
         overview[pid] = overview[pid] || {
             count: 0
         };
         overview[pid].count++;
-        var isp = fields.isp;
-        var province = fields.province;
+        var isp = data.isp;
+        var province = data.province;
 
         if (isp) {
             overview[pid].isp = overview[pid].isp || {};
@@ -27,14 +31,12 @@ module.exports = function(data, options) {
             overview[pid].province[province]++;
         }
 
-
-
         var now = new Date();
         var dateTime = '.' + now.getFullYear() + (now.getMonth() + 1);
 
         if (curDateTime !== dateTime) {
             //每月一个文件
-            var access_log = (options.access_log || './hijack') + '.overview' + dateTime;
+            var access_log = (options.filePath || './logs/hijack') + '.overview' + dateTime;
             stream && stream.end();
             //新开一个steam
             stream = fs.createWriteStream(access_log, {
@@ -44,24 +46,28 @@ module.exports = function(data, options) {
             curDateTime = dateTime;
         }
 
-
         if (curHour !== now.getHours() && stream) {
             dateTime = dateTime.slice(1);
             var result = dateTime + now.getDate() + now.getHours() + '=';
-            result += JSON.stringify(overview) + '\n';
+            result += JSON.stringify(overviewMap) + '\n';
             stream.write(result);
-            overview = {};
+            overviewMap[query.type] = {};
             curHour = now.getHours();
         }
+    }
+
+
+    if (query.type == 0) {
         return;
     }
+    //处理劫持url的host
     if (query.files) {
         try {
             var content = decodeURIComponent(query.files);
         } catch (e) {
             content = query.files;
         }
-        fields.content = content;
+        data.content = content;
         content = content.split(',');
         var unique = {};
         var hostArr = content.map(function(v) {
@@ -87,12 +93,11 @@ module.exports = function(data, options) {
         });
 
 
-        fields.host1 = hostArr[0];
-        fields.host2 = hostArr[1];
+        data.host1 = hostArr[0];
+        data.host2 = hostArr[1];
     } else {
-        fields.host1 = '';
-        fields.host2 = '';
+        data.host1 = '';
+        data.host2 = '';
     }
-
     return data;
-};
+}
