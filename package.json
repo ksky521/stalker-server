@@ -1,6 +1,6 @@
 {
   "name": "stalker-server",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "A static server with realtime log parser",
   "author": {
     "name": "Theo Wang",
