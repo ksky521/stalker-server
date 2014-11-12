@@ -1,34 +1,86 @@
 {
-    "staticPath": "./public",
+    "staticPath": "../www",
     "port": 8800,
     "serverOptions": {},
-    "error_log": "./error.log",
+    "error_log": "./logs/error.log",
     "logs": {
+        "badjs.gif": {
+            "processor": ["detector"],
+            "storer": ["mysql"]
+        },
+        "t.gif": {
+            "processor": ["detector"],
+            "storer": ["json"]
+        },
         "f.gif": {
             "processor": ["detector"],
-            "storer": ["csv"]
-
+            "storer": ["csv"],
+            "prestorer": ["./prestorer.feature.js"]
         },
         "hijack.gif": {
             "processor": ["ipfinder"],
-            "prestorer": ["./test/prestorer.js"],
+            "prestorer": ["./prestorer.hijack.js"],
             "storer": ["csv"]
         }
     },
     "settings": {
+        "t.gif": {
+            "detector": {
+                "types": ["os", "browser", "device"]
+            },
+            "ipfinder": {
+                "database": "./ip.dat"
+            },
+            "./storer.json.js": {
+                "filePath": "./logs/perf.log",
+                "hashMap": {
+                    "id": "product_id"
+                }
+            }
+        },
         "hijack.gif": {
+            "ipfinder": {
+                "database": "./ip.dat"
+            },
             "csv": {
-                "filePath": "./hijack.log",
-                "fields": ["__", "id", "ip", "access_time", "userAgent", "os_name", "os_version", "os_fullversion", "browser_name", "browser_version", "browser_fullversion", "device_name", "device_version", "device_fullversion", "type", "files", "isp", "province", "city", "county", "host1", "host2"]
+                "filePath": "./logs/hijack.log",
+                "fields": ["__", "id", "ip", "access_time", "type", "files", "isp", "province", "city", "county", "host1", "host2", "ipprefix"]
+            }
+        },
+        "badjs.gif": {
+            "detector": {
+                "types": ["os", "browser", "device"]
+            },
+            "mysql": {
+                "server": {
+                    "host": "localhost",
+                    "port": "3306",
+                    "user": "root",
+                    "password": "",
+                    "database": "stalker",
+                    "tablename": "badjs"
+                },
+                "sql": "insert into badjs set ?",
+                "hashMap": {
+                    "id": "product_id",
+                    "userAgent": "user_agent",
+                    "url": "source_url",
+                    "msg": "error_content",
+                    "level": "error_level",
+                    "col": "error_col",
+                    "boxv": "box_version",
+                    "ln": "error_ln"
+                },
+                "keys": ["id", "ip", "userAgent", "access_time", "os_name", "os_version", "os_fullversion", "browser_name", "browser_version", "browser_fullversion", "device_name", "device_version", "device_fullversion", "msg", "url", "ln", "col", "mid", "boxv", "isbox"]
             }
         },
         "f.gif": {
             "detector": {
-                "types": ["os"]
+                "types": ["os", "browser", "device"]
             },
             "csv": {
-                "filePath": "./feature.log",
-                "fields": ["__", "id", "ip", "access_time", "userAgent", "os_name", "os_version", "os_fullversion", "browser_name", "browser_version", "browser_fullversion", "device_name", "device_version", "device_fullversion", "ds", "dpr", "isp", "province", "city", "county", "bdrs", "bxsd", "txsd", "anim", "trsi", "trfm", "cavs", "ls", "ss", "natm", "ustm", "arra", "xhr2", "rqaf", "cookie", "geo", "svg", "work", "wbsk", "vido", "audo", "hsty", "file", "psmg", "WebP-lossy", "WebP-lossless", "WebP-alpha", "WebP-animation", "ftr_028", "ftr_029", "ftr_030", "ftr_031", "ftr_032", "ftr_033", "ftr_034", "ftr_035", "ftr_036", "ftr_037", "ftr_038", "ftr_039", "ftr_040", "ftr_041", "ftr_042", "ftr_043", "ftr_044", "ftr_045", "ftr_046", "ftr_047", "ftr_048", "ftr_049"]
+                "filePath": "./logs/feature.log",
+                "fields": ["__", "id", "ip", "access_time", "userAgent", "os_name", "os_version", "os_fullversion", "browser_name", "browser_version", "browser_fullversion", "device_name", "device_version", "device_fullversion", "ds", "dpr", "bdrs", "bxsd", "txsd", "anim", "trsi", "trfm", "cavs", "ls", "ss", "natm", "ustm", "arra", "xhr2", "rqaf", "cookie", "geo", "svg", "work", "wbsk", "vido", "audo", "hsty", "file", "psmg", "WebP-lossy", "WebP-lossless", "WebP-alpha", "WebP-animation", "ftr_028", "ftr_029", "ftr_030", "ftr_031", "ftr_032", "ftr_033", "ftr_034", "ftr_035", "ftr_036", "ftr_037", "ftr_038", "ftr_039", "ftr_040", "ftr_041", "ftr_042", "ftr_043", "ftr_044", "ftr_045", "ftr_046", "ftr_047", "ftr_048", "ftr_049"]
             }
         }
     }
