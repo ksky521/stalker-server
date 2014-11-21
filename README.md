@@ -1,6 +1,6 @@
 ## stalker-server
 
-这是一个实时分析数据的打点服务器~
+这是一个实时分析数据的打点服务器~ 设计文档和使用请参考[stalker.pdf](./stalker.pdf)
 
 分析数据分四个阶段：parser/processor/prestorer/storer，每个阶段都可以做插件化开发~
 
